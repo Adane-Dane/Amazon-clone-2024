@@ -9,12 +9,11 @@ import { DataContext } from "../DataProvider/DataProvider";
 import { auth } from "../../Utility/firebase";
 
 const Header = () => {
+  const [{ user, basket }, dispatch] = useContext(DataContext);
 
-  const [{user, basket},dispatch]=useContext(DataContext)
-
-  const totalItem =basket?.reduce((amount,item)=>{
-    return item.amount + amount
-  },0)
+  const totalItem = basket?.reduce((amount, item) => {
+    return item.amount + amount;
+  }, 0);
   // console.log(basket.length);
 
   return (
@@ -63,8 +62,8 @@ const Header = () => {
                 <div>
                   {user ? (
                     <>
-                      <p>Hello { user?.email?.split("@")[0]}</p>
-                      <span onClick={()=>auth.signOut()}>Sign Out</span>
+                      <p>Hello {user?.email?.split("@")[0]}</p>
+                      <span onClick={() => auth.signOut()}>Sign Out</span>
                     </>
                   ) : (
                     <>

@@ -1,34 +1,33 @@
-import React, { useContext } from 'react'
-import classes from './Cart.module.css'
-import LayOut from '../../Components/LayOut/LayOut'
-import { DataContext } from '../../Components/DataProvider/DataProvider'
-import ProductCard from '../../Components/Product/ProductCard';
-import CurrencyFormat from '../../Components/CurrencyFormat/CurrencyFormat';
-import { Link } from 'react-router-dom';
-import { Type } from '../../Utility/action.type';
-import {IoIosArrowDown} from "react-icons/io"
+import React, { useContext } from "react";
+import classes from "./Cart.module.css";
+import LayOut from "../../Components/LayOut/LayOut";
+import { DataContext } from "../../Components/DataProvider/DataProvider";
+import ProductCard from "../../Components/Product/ProductCard";
+import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
+import { Link } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
+import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 
-
 function Cart() {
-  const [{basket, user},dispatch] = useContext(DataContext);
+  const [{ basket, user }, dispatch] = useContext(DataContext);
 
-  const total = basket.reduce((amount,item)=>{
-   return item.price * item.amount + amount
-  },0)
+  const total = basket.reduce((amount, item) => {
+    return item.price * item.amount + amount;
+  }, 0);
 
-  const increment =(item)=>{
+  const increment = (item) => {
     dispatch({
-      type:Type.ADD_TO_BASKET,
-      item
-    })
-  }
-  const decrement =(id)=>{
+      type: Type.ADD_TO_BASKET,
+      item,
+    });
+  };
+  const decrement = (id) => {
     dispatch({
-      type:Type.REMOVE_FROM_BASKET,
-      id
-    })
-  }
+      type: Type.REMOVE_FROM_BASKET,
+      id,
+    });
+  };
 
   return (
     <LayOut>
@@ -88,4 +87,4 @@ function Cart() {
   );
 }
 
-export default Cart
+export default Cart;

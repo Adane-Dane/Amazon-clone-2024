@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
-import {ClipLoader} from "react-spinners"
+import { ClipLoader } from "react-spinners";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import { Type } from "../../Utility/action.type";
 
@@ -14,43 +14,43 @@ function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [{user}, dispatch] = useContext(DataContext);
+  const [{ user }, dispatch] = useContext(DataContext);
   const [loader, setLoader] = useState({
-    signIn:false,
-    signUp:false
-  })
-  const navigate = useNavigate()
+    signIn: false,
+    signUp: false,
+  });
+  const navigate = useNavigate();
 
-// console.log(user);
+  // console.log(user);
 
   const authHandler = (e) => {
     console.log(e.target.name);
     e.preventDefault();
     if (e.target.name == "signin") {
-      setLoader({...loader, signIn:true})
+      setLoader({ ...loader, signIn: true });
       signInWithEmailAndPassword(auth, email, password)
         .then((userInfo) => {
           dispatch({
-            type:Type.SET_USER,
-            user:userInfo.user
-          })
+            type: Type.SET_USER,
+            user: userInfo.user,
+          });
           setLoader({ ...loader, signIn: false });
-          navigate("/")
+          navigate("/");
         })
         .catch((err) => {
-          setError(err.message)
+          setError(err.message);
           setLoader({ ...loader, signIn: false });
         });
     } else {
       setLoader({ ...loader, signUp: true });
       createUserWithEmailAndPassword(auth, email, password)
         .then((userInfo) => {
-           dispatch({
-             type: Type.SET_USER,
-             user: userInfo.user,
-           });
-           setLoader({ ...loader, signUp: false });
-           navigate("/");
+          dispatch({
+            type: Type.SET_USER,
+            user: userInfo.user,
+          });
+          setLoader({ ...loader, signUp: false });
+          navigate("/");
         })
         .catch((err) => {
           setError(err.message);

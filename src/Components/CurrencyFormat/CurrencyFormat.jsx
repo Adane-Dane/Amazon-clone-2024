@@ -7,3 +7,16 @@ const CurrencyFormat = ({amount}) => {
 }
 
 export default CurrencyFormat
+
+
+// Import format from date-fns library 
+// import { format } from 'date-fns';
+// const formatDate = (date) => {
+//   try {
+//     return format(new Date(date), 'MM - dd - yyyy | HH:mm:ss a');
+//   } catch (error) {
+//     console.error('Invalid date', error);
+//     return 'Invalid date';
+//   }
+// };
+// export default formatDate;
