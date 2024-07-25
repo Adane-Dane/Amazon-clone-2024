@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import classes from "./SignUp.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../../Utility/firebase";
 import {
   signInWithEmailAndPassword,
@@ -20,6 +20,7 @@ function Auth() {
     signUp: false,
   });
   const navigate = useNavigate();
+  const navStateData = useLocation();
 
   // console.log(user);
 
@@ -35,7 +36,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoader({ ...loader, signIn: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
@@ -50,7 +51,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoader({ ...loader, signUp: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
@@ -61,14 +62,27 @@ function Auth() {
 
   return (
     <section className={classes.login}>
+      {/* logo  */}
       <Link to={"/"}>
         <img
           src="https://pngimg.com/uploads/amazon/small/amazon_PNG1.png"
           alt=""
         />
       </Link>
+
+      {/* form  */}
       <div className={classes.login_container}>
         <h1>Sign In</h1>
+        {navStateData?.state?.msg && (
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >{navStateData?.state?.msg}</small>
+        )}
         <form action="">
           <div>
             <label htmlFor="email">Email</label>
