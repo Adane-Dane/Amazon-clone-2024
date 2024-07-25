@@ -11,9 +11,9 @@ import { auth } from "../../Utility/firebase";
 const Header = () => {
   const [{ user, basket }, dispatch] = useContext(DataContext);
 
-  const totalItem = basket?.reduce((amount, item) => {
-    return item.amount + amount;
-  }, 0);
+  // const totalItem = basket?.reduce((amount, item) => {
+  //   return item.amount + amount;
+  // }, 0);
   // console.log(basket.length);
 
   return (
@@ -43,6 +43,10 @@ const Header = () => {
             <div className={classes.search}>
               <select name="" id="">
                 <option value="">All</option>
+                {/* <option value="">Jewelery</option>
+                <option value="">Women's</option>
+                <option value="">Men's</option>
+                <option value="">Electronics</option> */}
               </select>
               <input type="text" />
               <BsSearch size={25} />
@@ -79,7 +83,7 @@ const Header = () => {
               </Link>
               <Link to="/cart" className={classes.cart}>
                 <BiCart size={35} />
-                <span>{totalItem}</span>
+                <span>{basket.length}</span>
               </Link>
             </div>
           </div>

@@ -68,6 +68,9 @@
   margin-right: -2px;
   /* border: none; */
 }
+.search, select {
+  background-color: #fff;
+}
 
 .search svg {
   padding: 7px;
@@ -162,6 +165,8 @@ a {
   gap: 2px;
   align-items: center;
 }
+
+
 
 @media screen and (max-width: 576px) {
   .header_container {
