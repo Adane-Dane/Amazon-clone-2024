@@ -12,7 +12,7 @@ function Product() {
     setIsLoading(true);
 
     axios
-      .get("https:fakestoreapi.com/products")
+      .get("https://fakestoreapi.com/products")
       .then((res) => {
         setProducts(res.data);
         setIsLoading(false);
